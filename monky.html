@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<!-- 1、题目：猴子第一天摘下若干个桃子，当即吃了一半，还不爽，又多吃了一个;第二天 ，将剩下的桃子吃了一半，又多吃一个;
+			...
+			以后每天早上都吃了前一天的剩下的一半零一个;第十天 ，只剩下一个桃子了.
+			
+			求：第一天共摘了多少桃子 -->
+
+	<!-- 2、分析：首先有两个参数(第几天：i表示，那一天几个桃：peachNum表示，已知第十天还剩下一个桃子。那么可以知道第九天的桃子数量peachNum=(第十天的桃子数量+1)*2 -->
+
+	<!-- 3、那么我们应该从第十天开始往回一步一步回算出桃子的数量，递归 -->
+	<!-- ******************************************************************************************************************* -->
+
+	<script type="text/javascript">
+		function calPeach() {
+			var i , peachNum;
+			i = 10;
+			peachNum = 1;
+			while(i>1) {
+				peachNum = (peachNum+1)*2;
+				i -=1;
+				console.log("第"+i+"天的桃子数量是："+peachNum);
+			}
+
+		}
+	</script>
+	<button onclick="calPeach()">测试按钮</button>
+</body>
+</html>
