@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/**
+			 * 
+			 两种 方式 (1、if结构 ，2、短路逻辑)
+			 编写一个"个人所得税"计算器函数，接收一个参数表示工资，函数中，最终打印输出该工资应缴纳的个人所得税金额。
+			 个税计算梯度如下：
+			 1、3500 元以下 免征
+			 2、3500 ~ 5000 部分 缴纳 3%的个税
+					4500 :  1000 * 0.03 = 30 
+			 3、5000 ~ 9000 部分 缴纳 10%的个税
+					工资：8000
+					超出 5000 ： 3000*0.1=300
+					超出 3500 5000以内 1500 * 0.03 = 45
+			 4、9000以上部分 缴纳 20%的个税
+				 工资：10000
+				 超出 9000 ：1000 * 0.2 = 200
+				 5000~9000 ：4000 * 0.1 = 400
+				 3500~5000 ：1500 * 0.03 = 45
+				 3500 ~ 0 ：免征
+				 共缴税：645
+			 */
+
+			 function calTax(salary) {
+			 	var tax = 0;
+			 	var _salary = salary;
+
+			 	if (salary>9000) {
+			 		tax +=(salary-9000)*0.2;
+			 		salary = 9000;
+			 	}
+			 	if (salary>5000) {
+			 		tax +=(salary-5000)*0.1;
+			 		salary = 5000;
+			 	}
+			 	if (salary>3500) {
+			 		tax +=(salary-3500)*0.03;
+
+			 	} else {
+			 		tax = 0;
+			 	}
+			 	console.log("工资："+_salary+"，个人税"+tax);
+			 }
+
+			 function calTax1(salary) {
+			 	var tax = 0;
+			 	var _salary = salary;
+			 	// 判断 薪资 计算 税收
+			 	salary>9000&&(
+			 		tax +=(salary-9000)*0.2,
+			 		salary = 9000
+			 		);
+			 	salary>5000&&(
+			 		tax +=(salary-5000)*0.1,
+			 		salary = 5000
+			 		);
+			 	salary>3500&&(
+			 		tax +=(salary-3500)*0.03
+			 		);
+			 	console.log(tax);
+			 }
+			 calTax1(10000);
+	</script>
+</body>
+</html>
