@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>天数计算器</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function calDays(){
+			var year = Number(prompt("请输入年份："));
+			var month = Number(prompt("请输入月份："));
+			var day = Number(prompt("请输入几号："));
+			var totalDays=0;
+			var isRun = (year%4==0&&year%100!=0)||(year%400==0);
+
+			var i=1;
+			while(i<month)  {
+				switch(i) {
+					case 1:
+					case 3:
+					case 5:
+					case 7:
+					case 8:
+					case 10:
+					case 12:
+						totalDays +=31;
+						break;
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						totalDays +=30;
+						break;
+					case 2:
+						totalDays +=28;
+					if (isRun) {
+						totalDays++;
+					}
+					break;
+				}
+				i++;
+			}
+			totalDays +=day;
+			console.log("你的生日在第"+totalDays+"天");
+		}
+	</script>
+	<button onclick="calDays()">天数计算器</button>
+</body>
+</html>
