@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>斐波那契数列</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*n表示月份，第n个月的兔子数量，其中已知第一个月和第二个月的兔子数量皆为1*/
+		function Fib(n) {
+			if (n==1||n==2) {
+				return 1;
+			}
+			return Fib(n-1)+Fib(n-2);
+		} 
+		console.log(Fib(10));//这边取n=10,第十个月的时候。
+	</script>
+</body>
+</html>
