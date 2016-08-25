@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>循环解决斐波那契数列</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Fib(n){
+			if (n==1||n==2) {
+				return 1;
+			}
+			var i,a=1,b=1,res=0;
+			for(i=3; i<=n; i++) {
+				res = a+b;
+				a = b;
+				b = res;
+			}
+			return res;
+		}
+		console.log(Fib(10));
+	</script>
+</body>
+</html>
