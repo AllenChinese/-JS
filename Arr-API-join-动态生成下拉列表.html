@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>join-api-动态生成下拉列表</title>
+</head>
+<body>
+<select name="city" id="sel">
+</select>
+	<script type="text/javascript">
+		var provs = ["浙江省","北京市","上海市","山东省","陕西省"];
+		var html="<option>"+
+		provs.join("</option><option>")
+		+"</option>";
+		// 设置id为sel的元素开始标签到结束标签之间的html内容
+		sel.innerHTML=html;
+	</script>
+</body>
+</html>
