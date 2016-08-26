@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>哈希数组和索引数组的速度比较</title>
+</head>
+<body>
+<script type="text/javascript">
+	var arr=["a","b","a","c","a","b"];
+      function unique1(arr){
+        //遍历arr中每个元素，同时声明空数组uarr
+        for(var i=0,uarr=[];i<arr.length;i++){
+          //遍历uarr中每个元素
+          for(var j=0;j<uarr.length;j++){
+           //如果uarr中当前元素等于arr中当前元素
+            if(uarr[j]==arr[i]){
+              break;//就退出循环
+            }
+          }
+           debugger;//(遍历结束)
+          //如果j等于uarr的length
+            //将arr中当前元素加入uarr中
+          j==uarr.length&&(uarr[j]=arr[i]);
+        }//(遍历结束)
+
+        return uarr;//返回uarr
+      } 
+       var uarr=unique1(arr);
+      console.log(String(uarr))
+
+
+      function unique2(arr){
+        //遍历arr中每个元素,同时创建空数组hash
+        for(var i=0,hash=[];i<arr.length;i++){
+          //如果hash中以arr中当前元素值为key的元素等于undefined
+          if(hash[arr[i]]===undefined){
+            //就在hash中添加一个新元素，key为arr中当前元素，值为1
+            hash[arr[i]]=1;
+          }
+        }//(遍历结束)hash:["a":1,"b":1,"c":1]
+        i=0;//设置i=0
+        var keys=[]//定义空数组keys
+        for(keys[i++] in hash); 
+        return keys;
+
+      }
+      var uarr=unique2(arr);
+      console.log(String(uarr));//a,b,c
+
+
+    
+      //随机生成十万个0~999之间的数，放入数组arr
+      for(var i=0,arr=[];i<100000;i++){
+        arr[arr.length]=
+          parseInt(Math.random()*1000);
+      }
+      //设置测试开始时间
+      console.time("unique1");
+      unique1(arr);//调用被测函数
+      //设置测试结束时间，并打印时间差
+      console.timeEnd("unique1");//ns
+      console.time("unique2");
+      unique2(arr);
+      console.timeEnd("unique2");//ns
+    
+ </script>
+</body>
+</html>
