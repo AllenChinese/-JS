@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>push()和pop()</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var iphone7=5;
+		var queue=[];
+		for(var i=1; i<=5; i++){
+			queue.push("顾客"+i);
+			console.log(String(queue));
+		}
+		queue.push("你");
+		while(iphone7>0){
+			var first=queue.shift();
+			iphone7--;
+			console.log(first+"抢购成功;剩余"+iphone7);
+		}
+		console.log(String(queue)+"没抢上");
+	</script>
+</body>
+</html>
