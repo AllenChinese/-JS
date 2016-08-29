@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		var bus=[];
+		for(var i=1; i<=5; i++){
+			bus.unshift("乘客"+i);
+			console.log(String(bus));
+		}
+		while(bus.length>0){
+			// 最后一个乘客先下车
+			var last=bus.shift();
+			// 打印下车的乘客
+			console.log(last+"下车");
+			// 车上剩下的乘客
+			console.log(String(bus));
+		}
+	</script>
+</body>
+</html>
