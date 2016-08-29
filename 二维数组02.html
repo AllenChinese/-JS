@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二维数组</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 用二维数组来，输入省份，输出城市
+		var provs=["北京市", "天津市", "河北省"];
+		//            0          1         2
+		var cities=[
+			["东城区", "西城区", "海淀区"],//0
+			["河东区", "南开区", "和平区"],//1
+			["石家庄市", "保定市", "唐山市"]//2
+			];
+		function getCitiesByProvs(pname){
+			//遍历provs
+			for(var i=0; i<provs.length; i++){
+				//如果当前省份等于pname,就退出循环
+				//遍历结束
+				if (provs[i]==pname) {
+					break;
+				}
+			}
+			//如果i<provs的length
+			//弹出提示，显示cities中i位置的子数组
+			if (i<provs.length) {
+				alert(cities[i]);
+			} else {
+				//否则弹出提示，省份没有找到
+				alert("省份没找到");
+			}
+		}
+		getCitiesByProvs(prompt("请输入省份："));
+	</script>
+</body>
+</html>
