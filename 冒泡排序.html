@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bubbleSort</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function bubbleSort(arr){
+			// r从1开始，到小于length结束
+			for(var r=1; r<arr.length; r++){
+				// 第r轮的公式
+				// 遍历arr中每个元素，到小于length-r结束
+				for(var i=0; i<arr.length; i++){
+					// 如果当前元素>下一个元素
+					// 交换当前元素和下一个元素的位置
+					// 方法1：a=a+b;b=a-b;a=a-b;
+					// 方法2：b=[a,a=b][0];
+					if (arr[i]>arr[i+1]) {
+						arr[i+1]=[arr[i],arr[i]=arr[i+1]][0];
+					}
+				}
+			}
+			
+			
+		}
+		var arr=[4,2,5,1,7,3,6];
+		bubbleSort(arr);
+		console.log(String(arr));//1,2,3,4,5,6,7
+	</script>
+</body>
+</html>
