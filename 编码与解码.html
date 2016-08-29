@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编码与解码</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var msg="hello,world";
+		/*编码：charCodeAt(i)*/
+		function encode(msg){
+			// 遍历msg中每个字符，同时声明一个空字符串code
+			for(var i=0,code=""; i<msg.length; i++){
+				//将当前字符的unicode号保存在变量u中
+				// 如果u<10000,就补齐5位
+				// 在将u拼接到code结尾
+				var u = msg.charCodeAt(i);
+				u = (u+100000+"").slice(1);
+				code+=u;
+			}
+			
+			// 遍历结束
+			return code;
+		}
+		var code=encode(msg);
+		console.log(code);
+
+		/*解码：fromCharCode*/
+		function decode(code){
+			// 每5个字符遍一次，同时声明空字符串msg
+			for(var i=0,msg=""; i<code.length; i+=5){
+				// 截取code中i位置开始到i+5结束的子字符串保存在变量u中
+				var u=code.substring(i,i+5);
+				// 将u转为原字符后，拼接到msg结尾
+				msg+=String.fromCharCode(u);
+			}
+			// 遍历结束
+			return msg;
+		}
+		console.log(decode(code));
+	</script>
+</body>
+</html>
