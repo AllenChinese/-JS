@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断2048游戏是否结束</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var data=[
+			[2,0,2,4],
+			[2,0,2,4],
+			[2,0,2,4],
+			[2,0,2,4],
+		];
+		function isGameOver(data){
+			// 遍历二维数组data
+			for(r=0; r<data.length; r++){
+				for(c=0; c<data[r].length; c++){
+					// 如果当前元素为0
+					// 返回false
+					if(data[r][c]==0){
+						return false;
+					}
+					// 如果c<第r行的元素个数-1且当前元素等于右侧元素
+					// 返回false
+					if ((c<data[r].length-1)&&data[r][c]==data[r][c+1]) {
+						return false;
+					}
+					// 如果r<data的行数-1且当前元素等于下方元素
+					// 返回false
+					if ((r<data.length-1)&&data[r][c]==data[r+1][c]) {
+						return false;
+					}
+				}
+			}
+			// 遍历结束
+			// 返回true
+			return true;
+}
+		console.log(isGameOver(data));
+	</script>
+</body>
+</html>
