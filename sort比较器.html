@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sort比较器</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr=[12,3,23,2,123,1];
+		// step1:定义比较器函数
+		function cmp(a,b){
+			return a-b;
+		}//升序
+		/*function cmp(a,b){
+			return -(a-b);
+		}//降序*/
+		arr.sort(cmp);
+		console.log(String(arr));
+	</script>
+</body>
+</html>
