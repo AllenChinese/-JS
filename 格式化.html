@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>replace格式化</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var data="20160830二下2153";
+		data=data.replace(/(\d{4})(\d{2})(\d{2})([\u4e00-\u9fa5])([\u4e00-\u9fa5])(\d{2})(\d{2})/,"$1年$2月$3日 星期$4 $5午 $6:$7");
+		console.log(data);//2016年08月30日 星期二 下午 21:53
+	</script>
+</body>
+</html>
