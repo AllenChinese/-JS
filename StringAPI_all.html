@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	 <ul id="emps">
+      <li>scott</li><li>jack</li>
+      <li>rose</li> <li>tom</li>
+      <li>jerry</li><li>smith</li>
+    </ul>
+    <script>
+      //获得id为emps的元素的内容:
+      //去掉html开头和结尾的空字符
+      //截取html中4开始，到-5的子字符串
+      //将html按/<\/li>\s*<li>/切割，将结果保存在names
+      //将names按默认排序
+      //将names用</li><li>拼接,再补开头<li>和结尾</li>
+      //将结果放入emps的innerHTML中
+      emps.innerHTML="<li>"+
+          emps.innerHTML      //=>str
+              .replace(/^\s+|\s+$/g,"")//=>str
+              .slice(4,-5)//=>str
+              .split(/<\/li>\s*<li>/)//=>arr
+              .sort()//=>names//=>arr
+              .join("</li><li>")//=>str
+      +"</li>";
+     </script>
+</body>
+</html>
