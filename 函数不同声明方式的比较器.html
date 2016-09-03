@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*function cmp(a,b){
+			return a-b;
+		}*/
+	/*	var cmp=function(a,b){
+			return a-b;
+		}//返回数组*/
+		var cmp=new Function("a","b","return a-b");//返回数组
+		var arr=[2,12,34,545,3];
+		console.log(arr.sort(cmp));
+	</script>
+</body>
+</html>
