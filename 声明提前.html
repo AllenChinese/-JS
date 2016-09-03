@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>声明提前</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*console.log(fun());//?
+		function fun(){return 1};
+		console.log(fun());//?
+		function fun(){return 2};
+		var fun=100;
+		console.log(fun());//？*/
+		/*声明提前后的样子*/
+		function fun(){return 1};
+		function fun(){return 2};
+		var fun;
+		console.log(fun());//?2
+		console.log(fun());//?2
+		fun=100;//将变量中的地址变成的值
+		console.log(fun());//?报错TypeError类型错误，错误的使用了对象的方法
+
+
+	</script>
+</body>
+</html>
