@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var checkout=function(){
+		// arguments[,,,...]
+		// 如果0个参数
+		if (arguments.length==0) {
+			console.log("微信支付");
+		} else if (arguments.length==1) {
+			// 否则，如果1个参数
+			console.log("现金支付");
+		} else {
+			// 否则
+			console.log("刷卡支付");
+		}
+	}
+	// 根据传入参数的不同实现不同的操作：就是overload重载
+	checkout();
+	checkout(100);
+	checkout("xxxx xxxx xxxx","123456");
+
+
+	function add(){
+		// 遍历arguments中每个参数，同时声明变量sum=0
+		/*for(var i=0,sum=0;i<arguments.length;i++){
+			// 将当前参数值累加到sum上	
+			sum+=arguments[i];
+		}// 遍历结束*/
+
+		for(var i=0,sum=0;i<arguments.length;sum+=arguments[i++]);
+		// 返回sum
+		return sum;
+	}
+	console.log(
+		add(1,2,3,4),//10
+		add(1,2,3,4,5,6)//21
+		)
+	</script>
+</body>
+</html>
