@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Student(name,age){
+			this.name=name;
+			this.age=age;
+		}
+		Student.prototype.toString=function(){
+			return "{name:"+this.name+
+					"age:"+this.age+"}";
+		}
+		var lilei=new Student("Li Lei",11);
+		var hmm=new Student("Han Meimei",12);
+		console.log(lilei.toString());
+		console.log(hmm.toString());
+		var father={
+			mon:1000000000,
+			car:"BMW",
+			toString:function(){
+				return "{mon:"+this.mon+
+					",car:"+this.car+"}";
+			}
+		};
+		//hmm.__porto__=fahter;
+		Object.setPrototypeOf(hmm,father);
+		console.log(lilei.toString());
+		console.log(hmm.toString());
+	</script>
+</body>
+</html>
