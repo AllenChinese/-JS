@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>重写indexOf</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 扩展Array类型的indexOf方法
+		// 如果Array类型的原型对象不包含indexOf
+		if (Array.prototype.indexOf==undefined) {
+			// 为Array类型的原型对象添加indexOf方法，定义两个参数：val，fromi
+			Array.prototype.indexOf=function(val,fromi){
+				//如果fromi是undefined，就赋值为0
+				fromi===undefined&&(fromi=0);
+			//从fromi开始遍历当前数组中的每个元素
+			for(;fromi<this.length;fromi++){
+				//如果当前元素等于val
+				if (this[fromi]==val) {
+					//返回当前值
+					return fromi;
+				}
+				
+			}//遍历结束
+		//返回-1
+			return -1;
+		}
+	}
+		
+		
+		
+		var arr=[1,2,3,2,1];
+		//       0 1 2 3 4
+		document.write(
+			"<br>"+arr.indexOf(2)+//1
+			"<br>"+arr.indexOf(2,2)+//3
+			"<br>"+arr.indexOf(2,4)+//-1
+			"<br>"+arr.indexOf(4)//-1
+		);
+	</script>
+</body>
+</html>
