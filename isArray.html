@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断一个对象是不是数组类型</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var n=1,s="hello",b=true,nu=null,
+		un=undefined,fun=function(){},
+		obj={},
+		arr=[],
+		obj2={};
+		obj2.__proto__=arr;
+		/*console.log(
+			typeof(n),//number
+			typeof(s),//string 
+			typeof(b),//boolean
+			typeof(nu),//object
+			typeof(un),//undefined
+			typeof(fun),//function
+			typeof(obj),//object
+			typeof(arr)//object
+			);
+		//1、isPrototypeOf
+		console.log(
+			Array.prototype.isPrototypeOf(obj),
+			Array.prototype.isPrototypeOf(arr),
+			Array.prototype.isPrototypeOf(obj2)
+			);
+		//2、instanceof
+		console.log(
+			obj instanceof Array,
+			arr instanceof Array,
+			obj2 instanceof Array
+			);
+		//3、Object.prototype.toString
+		console.log(
+			Object.prototype.toString.call(obj)=="[object Array]",
+			Object.prototype.toString.call(arr)=="[object Array]",
+			Object.prototype.toString.call(obj2)=="[object Array]"
+			);
+		//4、Array.isArray();//ES5
+		console.log(
+			Array.isArray(obj),
+			Array.isArray(arr),
+			Array.isArray(obj2)	
+			);*/
+
+			//如果Array构造函数没有isArray
+			if (Array.isArray===undefined) {
+				//在Array的构造函数中添加isArray=function(obj)
+				Array.isArray=function(obj){
+					/*if (Object.prototype.toString.call(obj)=="[object Object]") {
+						return true;
+					} else {
+						return false;
+					}*/
+					return Object.prototype.toString.call(obj)=="[object Object]"?true:false ;
+				}
+			}
+			
+			//强行用obj调用call
+			//Object.prototype.toString,如果结果是"[object Object]",就返回true
+			//否则返回false
+			document.write(
+				"<br>"+Array.isArray(obj)+
+				"<br>"+Array.isArray(arr)+
+				"<br>"+Array.isArray(obj2)
+				);
+			//因为要检查的对象不一定是数组类型，所以isArray方法不能放在Array.prototype中。
+			//放在Array.prototype中的方法只能是能被数组类型访问的 
+	</script>
+</body>
+</html>
