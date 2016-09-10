@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES5-一个属性的四大特性</title>
+</head>
+<body>
+<!-- 访问四大特性：Object.getOwnProperty(对象,'属性名') -->
+<!-- 修改四大特性：Object.definePropert/defineProperties(对象,"属性名",{
+	特性：值,
+	...:...
+}) -->
+	<script type="text/javascript">
+	"use strict";//启用严格模式
+		var emp={id:1001,ename:"allen",salary:10000};
+		/*Object.defineProperty(emp,"id",{
+			writable:false,//改为只读
+			enumerable:false,//不可遍历
+			configurable:false//不可删除
+			// 一般都需要定义configurable为false,防止修改其他特性
+		});*/
+
+		//一次修改多个属性：defineProperties 
+		Object.defineProperties(emp,{
+			id:{writable:false,configurable:false},
+			salary:{enumerable:false,configurable:false},
+			gender:{//新属性添加，特性默认为false
+				value:"male",
+				writable:true,
+				enumerable:true,
+				configurable:false,
+			}
+		})
+		//访问emp对象的id属性的四大特性
+		var attrs=Object.getOwnPropertyDescriptor(emp,"id");
+		console.dir(attrs);
+		/*emp.id=1002;*///改
+		for(var key in emp){
+			console.log(key+":"+emp[key]);
+		}//遍历
+		/*delete emp.id;*///删除
+		console.dir(attrs);
+		emp.gender="female";
+		/*delete.emp.gender;*/
+		console.dir(attrs);
+	</script>
+</body>
+</html>
