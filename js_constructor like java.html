@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js中私有属性其实就是受保护的一个局部变量</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//实现一个js类型，既包含公有属性，又包含私有属性
+		function Emp(id,name,age,salary){
+			//public
+			this.id=id;
+			this.name=name;
+			this.age=age;
+			var _age;//private
+			//配置属性的特性
+			Object.defineProperties(this,{
+				id:{//设置为只读
+					writable:false,configurable:false
+				},
+				salary:{//设置为不可遍历
+					enumerable:false,configurable:false
+				},
+				age:{//添加访问器属性保护局部变量_age
+					set:function(val){
+						if (val<18||val>65)
+							throw new Error("年龄介于18~65之间");
+							_age=val;
+						},
+					get:function(){
+						return _age;
+					},
+					enumerable:true,
+					configurable:true
+					}
+			});//this(当前对象)已经有了访问器属性age
+			this.age=age;
+			// 级别1：防扩展
+			// Object.preventExtensions(this);
+			// 级别2：防删除,在方扩展的基础上，有修改所有属性的configurable特性为false
+			Object.seal(this);
+		}
+		var emp=new Emp(1001,"allen",25,10000);
+		console.log(emp._age);
+		console.log(Object.isExtensible(emp));//false
+		console.log(Object.isSealed(emp));//true
+		emp.Age=-2;//尝试扩展新属性
+		delete emp.age;//尝试删除已有属性
+		console.dir(emp);
+
+		// 冻结：
+		var DBCONFIG={
+			USERNAME:"root",
+			PWD:"123456",
+			HOST:"localhost",
+			PORT:27017
+		}
+		Object.freeze(DBCONFIG);
+		console.log(Object.isFrozen(DBCONFIG));
+		DBCONFIG.HOST="192.168.0.100";
+		console.dir(DBCONFIG);
+	</script>
+</body>
+</html>
