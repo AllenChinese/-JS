@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义继承-子类型继承父类型</title>
+</head>
+<body>
+	  <script type="text/javascript">
+	  // 创建定义公共父类型，集中自定义子类型中公用的属性和方法
+	  	function Flyer(name,speed){
+	  		this.name=name;
+	  		this.speed=speed;
+	  	}//Flyer.prototype在原型对象中定义方法
+	  	Flyer.prototype.fly=function(){
+	  		console.log(this.name+" 以速度 "+this.speed+" 飞行");	
+	  	}
+	  // 实现两中类型之间的继承 
+	  // 飞机
+	  // 飞机的构造函数
+	  	function Plane(name,speed,score){
+	  		Flyer.apply(/*新对象的this*/this,arguments);
+	  		//父类型构造函数.call(this,属性参数) Flyer.call(this,name,speed)
+	  		this.score=score;
+	  	}//Plane.prototype
+	  	//让Plane.prototype继承Flyer.prototype
+	  	Object.setPrototypeOf(
+	  		Plane.prototype,
+	  		Flyer.prototype
+	  	);
+	  // 在原型对象中添加方法
+	  	Plane.prototype.getScore=function(){
+	  		console.log("击落敌机,得"+this.score+"分");
+	  	}
+
+	  	// 蜜蜂
+	  	function Bee(name,speed,award){
+	  		Flyer.apply(/*新对象的this*/this,arguments);
+	  		//父类型构造函数.call(this,属性参数) Flyer.call(this,name,speed)
+	  		this.award=award;
+	  	}
+	  	// 让Bee.prototype继承Flyer.prototype
+	  	Object.setPrototypeOf(
+	  		Bee.prototype,
+	  		Flyer.prototype
+	  	);
+	  	Bee.prototype.getAward=function(){
+	  		console.log("击落蜜蜂奖励"+this.award);
+	  	}
+	  	var f16=new Plane("f16",1000,20);
+	  	var bee=new Bee("小蜜蜂",50,"1 life");
+	  	f16.fly();
+	  	bee.fly();
+	  	f16.getScore();
+	  	bee.getAward();
+
+	  </script> 
+</body>
+</html>
