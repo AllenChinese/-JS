@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>使用 Cookie</title>
+<meta charset="utf-8" />
+
+</head>
+<body>
+	<h2>用户登录</h2>
+	<form action="8_loginResult.html">
+	用户名：<input name="userName" /><br/>
+	密码：<input name="userPwd" type="password" /><br/>
+	<input type="radio" name="noLoginPeriod" value="7"/>一周内不在登录
+	<input type="radio" name="noLoginPeriod" value="14"/>两周内不在登录
+	<input type="radio" name="noLoginPeriod" value="30"/>一月内不在登录<br/>
+	<input type="submit" value="登录"/>
+	</form>
+  <script>
+  	// 为页面第一个form绑定提交事件监听：
+  	document.forms[0].addEventListener("submit",
+  		function(){//this-->form
+  		// 获得当前form(this)中name为userName的文本框
+  		var username=this.userName.value;
+  		// 查找name属性为noLoginPeriod的状态为checked的元素，保存在rad中
+  		var rad=document.querySelector("[name='noLoginPeriod']:checked");
+  		// 如果用户选中一个radio
+  		if (rad!=null) {
+  		// 获取rad的内容，转为整数保存在变量days中
+  		var days=parseInt(rad.value);
+  		// 获得当前时间now
+  		var now=new Date();
+  		// 将当前时间加days天
+  		now.setDate(now.getDate()+days);
+  		// 添加cookie:变量名为userName，变量值为username
+  		setCookie("userName",username,now);
+  		setCookie("pwd",pwd,now);
+      /*document.cookie="userName="+username+
+                  ";expires="+now.toGMTString(); 
+      document.cookie="pwd="+pwd+
+                  ";expires="+now.toGMTString(); */
+    }
+});
+  	function setCookie(cookieName,value,date){
+  		document.cookie=cookieName+"="+value+
+  						";expires="+date.toGMTString();
+  	}
+  </script>
+</body>
+</html>
