@@ -27,6 +27,60 @@
 		/*================================================
 		构造函数模式
 		==================================================*/
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+		}
+		//生成实例对象 同一个构造函数
+		var cat1 = new Cat("大毛","黄色");
+		var cat2 = new Cat("二毛","黑色");
+		console.log(cat1.name);//大毛
+		console.log(cat2.color);//黑色
+
+		/*=======================================
+		添加一个不变的属性
+		=========================================*/
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+			this.type = "猫科动物";
+			this.eat = function(){
+				alert("吃老鼠");
+			}
+		}
+
+		var cat1 = new Cat("大毛","黄色");
+		var cat2 = new Cat("二毛","黑色");
+		//alert(cat1.type);//猫科动物
+		//cat1.eat();
+
+		/*=======================================
+		每个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承
+		=========================================*/
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+		}
+		Cat.prototype.type = "猫科动物";
+		Cat.prototype.eat = function(){alert("吃老鼠")};
+
+		//生成实例对象
+		var cat1 = new Cat("大毛","黄色");
+		var cat2 = new Cat("二毛","黑色");
+		alert(cat1.type);
+		cat1.eat();
+
+		/*=======================================
+		isPrototypeOf() 判断某个prototype对象和某个实例之间的关系
+		*/
+		alert(Cat.prototype.isPrototypeOf(cat1));
+		alert(Cat.prototype.isPrototypeOf(cat2));
+
+		/*=======================================
+		hasOwnProperty()
+		*/
+		alert(cat1.hasOwnProperty("name"));
+		alert(cat1.hasOwnProperty("type"));
 	</script>
 </body>
 </html>
