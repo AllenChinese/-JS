@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*================================
+		对象之间继承的5种方法
+		==================================*/
+		//动物对象构造函数
+		function Animal(){
+			this.species = "动物";
+		}
+		//猫对象构造函数
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+		}
+		//使猫继承动物
+		
+		/*=================================
+		使用call和apply 将父对象构造函数绑定在子对象上
+		*/
+		function Cat(name,color){
+			//Animal.apply(this,arguments);
+			Animal.call(this);
+			this.name = name;
+			this.color = color;
+		}
+		var cat1 = new Cat("大毛","黄色");
+		//alert(cat1.species);
+
+		/*==================================
+		使用prototype属性
+		*/
+		Cat.prototype = new Animal();
+		Cat.prototype.constructor = Cat;
+		var cat1 = new Cat("大毛","黄色");
+		//alert(cat1.species);
+
+		/*==================================
+		直接继承Animal对象
+		*/
+		function Animal(){};
+		Animal.prototype.species = "动物";
+
+		Cat.prototype = Animal.prototype;
+		Cat.prototype.constructor = Cat;
+		var cat1 = new Cat("大毛","黄色");
+		//alert(cat1.species); 
+		
+		/*==================================
+		空对象做中介
+		*/
+		function extend(Child,Parent){
+			var F = function(){};
+			F.prototype = Parent.prototype;
+			Child.prototype = new F();
+			Child.prototype.constructor = Child;
+			Child.uber = Parent.prototype;
+		}
+		extend(Cat,Animal);
+		var cat1 = new Cat("大毛","黄色");
+		//alert(cat1.species);
+
+		/*==================================
+		拷贝继承
+		*/ 
+		function Animal(){};
+		Animal.prototype.species = "动物";
+
+		function extend2(Child,Parent){
+			var p = Parent.prototype;
+			var c = Child.prototype;
+			for(var i in p){
+				c[i] = p[i];
+			}
+			c.uber = p;
+		}
+
+		extend2(Cat,Animal);
+		var cat1 = new Cat("大毛","黄色");
+		alert(cat1.species);//动物
+	</script>
+</body>
+</html>
