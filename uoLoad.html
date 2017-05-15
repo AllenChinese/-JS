@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文件上传</title>
+</head>
+<body>
+	<input type="file" id="img_input" accept="image/*" onchange="upLoadPic(this.files)" />
+	<script type="text/javascript" src="./lib/jquery.min.js"></script>
+	<script type="text/javascript">
+		function upLoadPic(files)  {
+            //获取图片资源
+            var file =  files[0];
+
+            //只选取图片文件
+            if(!file.type.match('image.*')){
+                return false;
+            }else{
+                var reader = new FileReader();
+
+                reader.readAsDataURL(file);//读取文件
+
+                reader.onload = function(arg){//渲染文件
+                    // return arg.target.result;
+                    console.log(arg.target.result);//输出base64格式
+                } 
+
+                console.log($("#img_input").prop("files")[0])
+            }       
+        }
+	</script>
+</body>
+</html>
